@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Krishi Sakhi">
+    <meta name="msapplication-TileColor" content="#2E8B57">
+    
+    <!-- Primary Meta Tags -->
+    <title>Krishi Sakhi - AI-Powered Assistant for Smart Agriculture</title>
+    <meta name="title" content="Krishi Sakhi - AI-Powered Assistant for Smart Agriculture">
+    <meta name="description" content="Get real-time insights on groundwater levels, crop suitability, and pest detection. Krishi Sakhi provides data-driven recommendations to empower farmers and agricultural planners.">
+    <meta name="keywords" content="AI agriculture, smart farming, groundwater data, crop recommendation, pest detection, precision agriculture, farmer assistant, krishi sakhi">
+    <!--meta name="author" content="Krishi Sakhi">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://krishisakhi.com/">
+    <meta property="og:title" content="Krishi Sakhi - AI-Powered Assistant for Smart Agriculture">
+    <meta property="og:description" content="Get real-time insights on groundwater levels, crop suitability, and pest detection. Krishi Sakhi provides data-driven recommendations to empower farmers and agricultural planners.">
+    <meta property="og:image" content="./og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Krishi Sakhi">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://krishisakhi.com/">
+    <meta property="twitter:title" content="Krishi Sakhi - AI-Powered Assistant for Smart Agriculture">
+    <meta property="twitter:description" content="Get real-time insights on groundwater levels, crop suitability, and pest detection.">
+    <meta property="twitter:image" content="./twitter-card.svg">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.svg">
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+    <link rel="manifest" href="./site.webmanifest">
+    <meta name="theme-color" content="#2E8B57">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Leaflet.js for Interactive Map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <!-- JavaScript Disabled Fallback -->
+    <noscript>
+        <div style="background: #fed7d7; color: #742a2a; padding: 1rem; text-align: center; font-weight: 500; border-bottom: 1px solid #feb2b2;">
+            <i class="fas fa-exclamation-triangle"></i>
+            This website requires JavaScript for full functionality. Please enable JavaScript in your browser.
+        </div>
+    </noscript>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" aria-label="Krishi Sakhi - Go to homepage">
+                <img src="logo.svg" alt="Krishi Sakhi Logo" class="logo-image">
+                <span>Krishi Sakhi</span>
+            </a>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+                <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+                <li role="none"><a href="#features" class="nav-link" role="menuitem">Features</a></li>
+                <li role="none"><a href="#applications" class="nav-link" role="menuitem">Applications</a></li>
+                <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <button class="btn btn-primary btn-cta" aria-label="Access the farming dashboard">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    Access Dashboard
+                </button>
+            </div>
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-menu">
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Slide 1 -->
+    <section id="home" class="hero hero-slide-1">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="hero-content hero-center">
+            <h1 class="hero-title">
+                <span class="title-main">Data-Driven</span>
+                <span class="title-accent">AI-Powered Farming</span>
+                <span class="title-main">Decisions, Simplified</span>
+            </h1>
+            <p class="hero-description">
+                Krishi Sakhi transforms complex agricultural and groundwater data into actionable insights. 
+                Our platform helps farmers optimize irrigation, select suitable crops, and protect their 
+                harvests using cutting-edge AI.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <i class="fas fa-rocket"></i>
+                    Explore Platform
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToSlide2()">
+            <div class="scroll-arrow"></div>
+            <span>Explore Tools</span>
+        </div>
+    </section>
+
+    <!-- Hero Section - Slide 2 -->
+    <section id="tools" class="hero hero-slide-2">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2 class="slide-title">Interactive Tools</h2>
+                <p class="slide-description">
+                    Explore our interactive map and AI assistant to get real-time agricultural insights.
+                </p>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card interactive-dashboard" id="interactiveModule">
+                    <div class="module-content">
+                        <!-- Tab Navigation -->
+                        <div class="tab-navigation">
+                            <button class="tab-button active" data-tab="map" onclick="switchTab('map')">
+                                <i class="fas fa-map-marked-alt"></i>
+                                Interactive Map
+                            </button>
+                            <button class="tab-button" data-tab="assistant" onclick="switchTab('assistant')">
+                                <i class="fas fa-robot"></i>
+                                AI Assistant
+                            </button>
+                        </div>
+                        
+                        <!-- Map Tab Content -->
+                        <div class="tab-content active" id="mapTab">
+                            <div id="interactiveMap" class="map-container"></div>
+                            <div class="map-legend">
+                                <h5>Groundwater Status</h5>
+                                <div class="legend-item">
+                                    <span class="legend-color safe"></span>
+                                    <span>Safe (>80%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color warning"></span>
+                                    <span>Caution (40-80%)</span>
+                                </div>
+                                <div class="legend-item">
+                                    <span class="legend-color critical"></span>
+                                    <span>Critical (<40%)</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Assistant Tab Content -->
+                        <div class="tab-content" id="assistantTab">
+                            <div class="chat-container">
+                                <div class="chat-messages" id="chatMessages">
+                                    <div class="chat-message bot">
+                                        <div class="message-avatar">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <div class="message-content">
+                                            <p>Welcome to Krishi Sakhi! Ask me about groundwater levels or crop data.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chat-input-container">
+                                    <input type="text" id="chatInput" placeholder="Ask your farming question..." />
+                                    <button class="btn-send" onclick="sendMessage()">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToAbout()">
+            <div class="scroll-arrow"></div>
+            <span>Learn More</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Empowering Farmers with Technology</h2>
+                <p class="section-subtitle">
+                    Our platform bridges the gap between complex agricultural data and practical farming 
+                    decisions, making precision agriculture accessible to everyone.
+                </p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="problem-statement">
+                        <h3><i class="fas fa-exclamation-triangle"></i> The Challenge</h3>
+                        <p>
+                            Farmers and policymakers lack easy access to localized, real-time data on groundwater 
+                            and soil health, leading to inefficient water usage and suboptimal crop yields.
+                        </p>
+                    </div>
+                    <div class="solution-statement">
+                        <h3><i class="fas fa-lightbulb"></i> Our Solution</h3>
+                        <p>
+                            Krishi Sakhi provides a unified platform that uses AI to analyze complex datasets 
+                            from sources like INGRES. Our virtual assistant makes this data accessible through 
+                            simple queries, interactive maps, and personalized alerts.
+                        </p>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Water Efficiency Improvement</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Farmers Empowered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">700+</div>
+                        <div class="stat-label">Districts Covered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">AI Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Smart Features for Smart Farming</h2>
+                <p class="section-subtitle">
+                    Experience the perfect blend of agricultural expertise and modern AI technology
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Interactive Groundwater Map</h3>
+                    <p>Visualize real-time groundwater data from assessment units across the nation.</p>
+                    <ul>
+                        <li>Live water table monitoring</li>
+                        <li>Historical trend analysis</li>
+                        <li>Predictive modeling</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Chatbot Assistant</h3>
+                    <p>Get instant answers to your agricultural queries in natural language.</p>
+                    <ul>
+                        <li>24/7 availability</li>
+                        <li>Multi-language support</li>
+                        <li>Voice-enabled queries</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Crop Suitability Analysis</h3>
+                    <p>Receive AI-driven recommendations for the best crops based on local soil and water conditions.</p>
+                    <ul>
+                        <li>Soil-crop matching</li>
+                        <li>Yield predictions</li>
+                        <li>Seasonal recommendations</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <h3>Pest & Disease Detection</h3>
+                    <p>Upload images of crops to get an instant analysis of potential diseases or pest infestations.</p>
+                    <ul>
+                        <li>Image recognition AI</li>
+                        <li>Treatment recommendations</li>
+                        <li>Prevention strategies</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Personalized Farmer Alerts</h3>
+                    <p>Receive timely SMS or push notifications about weather forecasts, irrigation needs, and market prices.</p>
+                    <ul>
+                        <li>Weather warnings</li>
+                        <li>Irrigation reminders</li>
+                        <li>Market price updates</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data-Driven Reporting</h3>
+                    <p>Generate easy-to-understand reports for planning and resource management.</p>
+                    <ul>
+                        <li>Custom dashboards</li>
+                        <li>Export capabilities</li>
+                        <li>Trend analytics</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Advanced Technology Stack</h2>
+                <p class="section-subtitle">
+                    Built with cutting-edge technologies for reliable agricultural insights
+                </p>
+            </div>
+            <div class="tech-content">
+                <div class="tech-categories">
+                    <div class="tech-category active" data-category="ai-ml">
+                        <i class="fas fa-brain"></i>
+                        <span>AI & Machine Learning</span>
+                    </div>
+                    <div class="tech-category" data-category="frontend">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Frontend</span>
+                    </div>
+                    <div class="tech-category" data-category="backend">
+                        <i class="fas fa-server"></i>
+                        <span>Backend</span>
+                    </div>
+                    <div class="tech-category" data-category="data">
+                        <i class="fas fa-database"></i>
+                        <span>Data & Analytics</span>
+                    </div>
+                </div>
+                <div class="tech-details">
+                    <div class="tech-panel active" id="ai-ml">
+                        <h3>AI & Machine Learning</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <i class="fas fa-satellite"></i>
+                                <h4>Satellite Image Analysis</h4>
+                                <p>Remote sensing for crop health monitoring</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>PyTorch Models</h4>
+                                <p>Deep learning for yield prediction</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-language"></i>
+                                <h4>Natural Language Processing</h4>
+                                <p>Multi-lingual farmer queries</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-microchip"></i>
+                                <h4>IoT Integration</h4>
+                                <p>Real-time sensor data processing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-panel" id="frontend">
+                        <h3>Frontend Technologies</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <i class="fab fa-react"></i>
+                                <h4>React</h4>
+                                <p>Dynamic user interface</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-map"></i>
+                                <h4>Leaflet.js</h4>
+                                <p>Interactive mapping</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h4>Progressive Web App</h4>
+                                <p>Offline-first mobile experience</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-chart-pie"></i>
+                                <h4>Chart.js</h4>
+                                <p>Data visualization</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-panel" id="backend">
+                        <h3>Backend Infrastructure</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <i class="fab fa-python"></i>
+                                <h4>Python</h4>
+                                <p>Core processing engine</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-bolt"></i>
+                                <h4>FastAPI</h4>
+                                <p>High-performance APIs</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Secure Authentication</h4>
+                                <p>JWT-based security</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-cloud"></i>
+                                <h4>AWS Cloud</h4>
+                                <p>Scalable infrastructure</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tech-panel" id="data">
+                        <h3>Data & Analytics</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <i class="fas fa-database"></i>
+                                <h4>PostgreSQL</h4>
+                                <p>Geospatial data storage</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-stream"></i>
+                                <h4>Apache Kafka</h4>
+                                <p>Real-time data streaming</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <h4>Redis</h4>
+                                <p>High-speed caching</p>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-chart-area"></i>
+                                <h4>Time Series DB</h4>
+                                <p>Historical data analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Section -->
+    <section id="applications" class="applications section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Real-World Applications</h2>
+                <p class="section-subtitle">
+                    Transforming agriculture across multiple domains
+                </p>
+            </div>
+            <div class="applications-grid">
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <h3>Precision Irrigation</h3>
+                    <p>AI-driven irrigation scheduling based on soil moisture, weather predictions, and crop water requirements.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>Water Conservation</h3>
+                    <p>Optimize groundwater usage with real-time monitoring and predictive analytics for sustainable farming.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Yield Optimization</h3>
+                    <p>Maximize crop yields through data-driven insights on planting times, fertilizer use, and harvest predictions.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <h3>Climate Resilience</h3>
+                    <p>Build adaptive strategies for changing climate patterns with predictive modeling and risk assessment.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Market Intelligence</h3>
+                    <p>Connect farmers to markets with price predictions, demand forecasting, and supply chain optimization.</p>
+                </div>
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Policy Support</h3>
+                    <p>Provide data-driven insights to policymakers for better agricultural planning and resource allocation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">What Farmers Say</h2>
+                <p class="section-subtitle">
+                    Discover how Krishi Sakhi is transforming farms across India
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-mark">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "The groundwater mapping feature helped me save 40% water while increasing my cotton yield by 25%. This platform is a game-changer for sustainable farming."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1566753323558-f4e0952af115?w=64&h=64&fit=crop&crop=face&auto=format" alt="Rajesh Kumar" loading="lazy" decoding="async">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Rajesh Kumar</h4>
+                                <p class="author-role">Cotton Farmer, Gujarat</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-mark">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "The AI assistant helped me identify a pest infestation early and saved my entire tomato crop. The recommendations were precise and easy to follow."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1543871595-e11129e271cc?w=64&h=64&fit=crop&crop=face&auto=format" alt="Priya Sharma" loading="lazy" decoding="async">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Priya Sharma</h4>
+                                <p class="author-role">Vegetable Farmer, Maharashtra</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="quote-mark">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Real-time weather alerts and irrigation scheduling have transformed how I manage my wheat fields. My water bills are down, and yields are up!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <img src="https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?w=64&h=64&fit=crop&crop=face&auto=format" alt="Harpreet Singh" loading="lazy" decoding="async">
+                            </div>
+                            <div class="author-info">
+                                <h4 class="author-name">Harpreet Singh</h4>
+                                <p class="author-role">Wheat Farmer, Punjab</p>
+                                <div class="testimonial-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <div class="trust-number">50,000+</div>
+                    <div class="trust-label">Active Farmers</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-number">700+</div>
+                    <div class="trust-label">Districts Covered</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-number">98%</div>
+                    <div class="trust-label">User Satisfaction</div>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-number">24/7</div>
+                    <div class="trust-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Farming with AI?</h2>
+                <p>Join thousands of farmers who are already benefiting from data-driven agricultural insights.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i>
+                        Get Started Today
+                    </button>
+                    <button class="btn btn-outline btn-large">
+                        <i class="fas fa-calendar"></i>
+                        Schedule Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">
+                    Have questions about implementing Krishi Sakhi in your region? We're here to help.
+                </p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>support@krishisakhi.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 1800-123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Agricultural Innovation Hub<br>New Delhi, India 110001</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder=" " required>
+                        <label for="name">Full Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder=" " required>
+                        <label for="email">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="interest" name="interest" required>
+                            <option value="">Select Interest</option>
+                            <option value="farmer">Farmer Registration</option>
+                            <option value="partnership">Partnership</option>
+                            <option value="government">Government Collaboration</option>
+                            <option value="investment">Investment Inquiry</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                        <label for="message">Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="nav-logo">
+                        <i class="fas fa-seedling"></i>
+                        <span>Krishi Sakhi</span>
+                    </div>
+                    <p>Empowering farmers with AI-driven insights for sustainable and profitable agriculture.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#technology">Technology</a></li>
+                            <li><a href="#applications">Applications</a></li>
+                            <li><a href="#">API Documentation</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">User Guide</a></li>
+                            <li><a href="#">Video Tutorials</a></li>
+                            <li><a href="#">Research Papers</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Krishi Sakhi. All rights reserved. | Transforming agriculture through AI-powered insights</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="map.js"></script>
+    <script src="chatbot.js"></script>
+    <script src="three-background.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>
